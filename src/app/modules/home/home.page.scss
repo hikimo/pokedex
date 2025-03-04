@@ -1,0 +1,11 @@
+ion-toolbar {
+  --background: var(--color-primary);
+  --color: var(--color-white);
+
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+ion-label {
+  text-transform: capitalize;
+}

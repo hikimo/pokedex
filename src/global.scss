@@ -35,3 +35,165 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+:root {
+  --color-primary: #BAAA84;
+  --color-white: #F0F0F0;
+
+  --color-element-normal: #DCDCDC;
+  --color-element-fire: #FF3700;
+  --color-element-water: #14B9FF;
+  --color-element-grass: #92BF19;
+  --color-element-poison: #BE78BE;
+  --color-element-flying: #79BCD7;
+  --color-element-dragon: #3C64C8;
+  --color-element-electric: #FFE100;
+  --color-element-ground: #FAC85A;
+  --color-element-bug: #46C846;
+  --color-element-psychic: #F08CDC
+  --color-element-fighting: #DC6900;
+  --color-element-ice: #14F5FF;
+  --color-element-rock: #B48C64;
+  --color-element-ghost: #A08CFF;
+  --color-element-dark: #787878;
+  --color-element-steel: #AAC8F0;
+  --color-element-fairy: #FFAFDC;
+}
+
+body {
+  background-color: var(--color-white);
+}
+
+// Normalize
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+// Reusable classes
+.chatbox {
+  width: 100%;
+  padding: 12px 14px;
+  min-height: 100px;
+  background-color: var(--color-white);
+  border: 4px solid #A2C3D5;
+  border-radius: 26px;
+}
+
+.font-bold {
+  font-size: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.chip {
+  display: inline-block;
+  background-color: var(--color-element-normal);
+  
+  &.chip--sm {
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+
+  &[data-type="fire"] {
+    background-color: var(--color-element-fire);
+    color: var(--color-white);
+  }
+  
+  &[data-type="water"] {
+    background-color: var(--color-element-water);
+    color: var(--color-white);
+  }
+
+  &[data-type="grass"] {
+    background-color: var(--color-element-grass);
+    color: var(--color-white);
+  }
+
+  &[data-type="poison"] {
+    background-color: var(--color-element-poison);
+    color: var(--color-white);
+  }
+
+  &[data-type="flying"] {
+    background-color: var(--color-element-flying);
+    color: var(--color-white);
+  }
+
+  &[data-type="dragon"] {
+    background-color: var(--color-element-dragon);
+    color: var(--color-white);
+  }
+
+  &[data-type="electric"] {
+    background-color: var(--color-element-electric);
+    color: var(--color-white);
+  }
+
+  &[data-type="ground"] {
+    background-color: var(--color-element-ground);
+    color: var(--color-white);
+  }
+
+  &[data-type="bug"] {
+    background-color: var(--color-element-bug);
+    color: var(--color-white);
+  }
+
+  &[data-type="psychic"] {
+    background-color: var(--color-element-psychic);
+    color: var(--color-white);
+  }
+
+  &[data-type="fighting"] {
+    background-color: var(--color-element-fighting);
+    color: var(--color-white);
+  }
+
+  &[data-type="ice"] {
+    background-color: var(--color-element-ice);
+    color: var(--color-white);
+  }
+
+  &[data-type="rock"] {
+    background-color: var(--color-element-rock);
+    color: var(--color-white);
+  }
+
+  &[data-type="ghost"] {
+    background-color: var(--color-element-ghost);
+    color: var(--color-white);
+  }
+
+  &[data-type="dark"] {
+    background-color: var(--color-element-dark);
+    color: var(--color-white);
+  }
+
+  &[data-type="steel"] {
+    background-color: var(--color-element-steel);
+    color: var(--color-white);
+  }
+
+  &[data-type="fairy"] {
+    background-color: var(--color-element-fairy);
+    color: var(--color-white);
+  }
+}
+
+.animate-spin {
+  animation: spinning 3s ease-in-out infinite;
+}
+
+// Animation Keyframes
+@keyframes spinning {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
