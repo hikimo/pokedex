@@ -19,7 +19,7 @@
 </ion-list>
 
 <ion-list>
-  @for (item of pokemonList; track item.name; let idx = $index) {
+  @for (item of pokemonList; track item.name) {
     <ion-item>
       <ion-label [routerLink]="['/pokedex/' + item.name]">
         {{ item.name }}

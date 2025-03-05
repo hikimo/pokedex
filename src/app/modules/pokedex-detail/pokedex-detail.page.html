@@ -74,21 +74,22 @@
           (click)="playSound()"
         >
           <ion-icon name="volume-high-outline"></ion-icon>
-          <span style="margin-left: 8px;">Play Cries</span>
+          <span style="margin-left: 8px;">Listen Cries</span>
         </ion-button>
 
         <ion-button 
           fill="clear" 
           expand="block"
           class="flex-1"
+          (click)="onToggleFavorite()"
         >
-          <ion-icon name="heart-outline"></ion-icon>
-          <span style="margin-left: 8px;">Add to Favorite</span>
+          <ion-icon name="{{isFavorite ? 'heart' : 'heart-outline'}}"></ion-icon>
+          <span style="margin-left: 8px;">{{ isFavorite ? 'Unfavorite' : 'Add to Favorite' }}</span>
         </ion-button>
       </ion-buttons>
 
       <div class="btn-controls">
-        @if (id > 0) {
+        @if (id > 1) {
           <ion-button
             fill="clear"
             (click)="onNavigate('prev')"
@@ -96,15 +97,18 @@
             <ion-icon name="arrow-back-circle"></ion-icon>
             <span>Previous</span>
           </ion-button>
-        }
-  
-        <ion-button
-          fill="clear"
-          (click)="onNavigate('next')"
-        >
-          <span>Next</span>
-          <ion-icon name="arrow-forward-circle"></ion-icon>
-        </ion-button>
+        } @else {<div></div>}
+
+
+        @if (id < 1304) {
+          <ion-button
+            fill="clear"
+            (click)="onNavigate('next')"
+          >
+            <span>Next</span>
+            <ion-icon name="arrow-forward-circle"></ion-icon>
+          </ion-button>
+        } @else {<div></div>}
       </div>
     </div>
   }

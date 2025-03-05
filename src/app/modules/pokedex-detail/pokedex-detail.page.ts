@@ -1,4 +1,5 @@
 import { IPokemonDetailResponse } from '@/app/core/interfaces/pokemon-detail-response.interface';
+import { FavoriteService } from '@/app/core/services/favorite.service';
 import { LoadingService } from '@/app/core/services/loading.service';
 import { PokemonService } from '@/app/core/services/pokemon.service';
 import { ChangeDetectorRef, Component } from '@angular/core';
@@ -38,11 +39,13 @@ export class PokedexDetailPage {
 
   public pokemon!: IPokemonDetailResponse;
   public cries!: HTMLAudioElement;
+  public isFavorite: boolean = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     private pokemonService: PokemonService,
+    private favoriteService: FavoriteService,
     private loadingService: LoadingService
   ) {
     this.selectedPokemon = this.activatedRoute.snapshot.paramMap.get('name') as string;
@@ -66,12 +69,18 @@ export class PokedexDetailPage {
         (response) => {
           this.id = response.id;
           this.pokemon = response;
+
+          this.checkFavorite();
           this.setSound(useId);
 
           this.loadingService.stopLoading();
           this.cdr.detectChanges();
         }
       )
+  }
+
+  checkFavorite() {
+    this.isFavorite = this.favoriteService.favorites.findIndex((name) => this.pokemon.name === name) > -1;
   }
 
   setSound(reset?: boolean) {
@@ -96,6 +105,15 @@ export class PokedexDetailPage {
       this.id -= 1;
       this.loadData(true);
     }
+  }
+
+  onToggleFavorite() {
+    if (this.isFavorite) {
+      this.favoriteService.removeFromFavorite(this.pokemon.name);      
+    } else {
+      this.favoriteService.addToFavorite(this.pokemon.name);
+    }
+    this.checkFavorite();
   }
   
   // Utils

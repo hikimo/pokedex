@@ -1,0 +1,16 @@
+<p class="ion-label ion-padding">List of my favorite POKeMONS</p>
+
+<ion-list>
+  @for (item of pokemonList; track item) {
+    <ion-item>
+      <ion-label [routerLink]="['/pokedex/' + item]">
+        {{ item }}
+      </ion-label>
+    </ion-item>
+  }
+</ion-list>
+
+<div class="ion-padding text-center">
+  <p>-- End of the line --</p>
+</div>
+

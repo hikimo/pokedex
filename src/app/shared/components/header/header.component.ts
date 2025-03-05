@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   IonHeader,
   IonToolbar,
@@ -12,6 +13,8 @@ import {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   imports: [
+    RouterLink,
+    
     IonHeader,
     IonToolbar,
     IonButtons,
