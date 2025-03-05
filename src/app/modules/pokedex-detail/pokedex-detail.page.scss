@@ -32,7 +32,7 @@
   min-height: 100svh;
   width: 100svw;
   background-color: var(--color-element-normal);
-  color: var(--color-black);
+  color: var(--color-white);
   
 
   // Pokemon theme based on the main type
@@ -92,7 +92,7 @@
 
   &[data-type="electric"] {
     background-color: var(--color-element-electric);
-    color: var(--color-white);
+    color: var(--color-black);
 
     .chip.chip--type {
       background-color: var(--color-element-electric);
