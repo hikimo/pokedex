@@ -4,19 +4,10 @@ import { MainLayoutComponent } from '@/app/shared/layouts/main-layout/main-layou
 export const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'loader'
-  },
-  {
-    path: 'loader',
-    loadComponent: () => import('./modules/loader/loader.page').then( m => m.LoaderPage)
-  },
-  {
-    path: '',
     component: MainLayoutComponent,
     children: [
       {
-        path: 'home',
+        path: '',
         loadComponent: () => import('./modules/home/home.page').then((m) => m.HomePage),
       },
     ]

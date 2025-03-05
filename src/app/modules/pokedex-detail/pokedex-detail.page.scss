@@ -5,6 +5,24 @@
   padding: 12px 0px;
 }
 
+.btn-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+
+  ion-button:nth-child(1) {
+    span {
+      margin-left: 0.5rem;
+    }
+  }
+
+  ion-button:nth-child(2) {
+    span {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
 .chip {
   position: relative;
   overflow: hidden;
@@ -33,6 +51,9 @@
   width: 100svw;
   background-color: var(--color-element-normal);
   color: var(--color-white);
+
+  transition: background 0.25s ease-in,
+  color 0.25s ease-in;
   
 
   // Pokemon theme based on the main type

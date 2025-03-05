@@ -1,6 +1,7 @@
 import { IPokemonDetailResponse } from '@/app/core/interfaces/pokemon-detail-response.interface';
+import { LoadingService } from '@/app/core/services/loading.service';
 import { PokemonService } from '@/app/core/services/pokemon.service';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { 
   IonContent,
@@ -9,7 +10,14 @@ import {
   IonIcon
 } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import { heart, heartOutline, menuOutline, volumeHighOutline } from 'ionicons/icons';
+import { 
+  heart, 
+  heartOutline, 
+  menuOutline, 
+  volumeHighOutline,
+  arrowBackCircle,
+  arrowForwardCircle
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-pokedex-detail',
@@ -26,32 +34,48 @@ import { heart, heartOutline, menuOutline, volumeHighOutline } from 'ionicons/ic
 })
 export class PokedexDetailPage {
   private selectedPokemon!: string;  
-  public cries!: HTMLAudioElement;
+  public id!: number;
+
   public pokemon!: IPokemonDetailResponse;
+  public cries!: HTMLAudioElement;
 
   constructor(
+    private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private loadingService: LoadingService
   ) {
     this.selectedPokemon = this.activatedRoute.snapshot.paramMap.get('name') as string;
     this.loadData();
 
-    addIcons({ menuOutline, heart, heartOutline, volumeHighOutline });
+    addIcons({ 
+      menuOutline, 
+      heart, 
+      heartOutline, 
+      volumeHighOutline,
+      arrowBackCircle,
+      arrowForwardCircle
+    });
   }
 
   // All data fetchers
-  loadData() {
-    this.pokemonService.getPokeDetails(this.selectedPokemon)
+  loadData(useId?: boolean) {
+    this.loadingService.startLoading();
+    this.pokemonService.getPokeDetails(useId ? String(this.id) : this.selectedPokemon)
       .subscribe(
         (response) => {
+          this.id = response.id;
           this.pokemon = response;
-          this.setSound();
+          this.setSound(useId);
+
+          this.loadingService.stopLoading();
+          this.cdr.detectChanges();
         }
       )
   }
 
-  setSound() {
-    if (!this.cries) {
+  setSound(reset?: boolean) {
+    if (!this.cries || reset) {
       this.cries = new Audio(this.pokemon.cries.latest);
       this.cries.loop = false;
 
@@ -61,6 +85,17 @@ export class PokedexDetailPage {
 
   playSound() {
     this.cries.play();
+  }
+
+  // All event handlers
+  onNavigate(control: 'next' | 'prev') {
+    if (control === 'next') {
+      this.id += 1;
+      this.loadData(true);
+    } else if (control === 'prev') {
+      this.id -= 1;
+      this.loadData(true);
+    }
   }
   
   // Utils

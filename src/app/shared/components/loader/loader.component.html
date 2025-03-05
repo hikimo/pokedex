@@ -1,4 +1,7 @@
-<div class="wrapper">
+<div 
+  class="wrapper"
+  [class.active]="loading$ | async"
+>
   <div class="section section__top">
     <div class="logo-frame">
       <img 
@@ -13,7 +16,7 @@
 
   <div class="section section__bottom">
     <div class="chatbox">
-      <p>Opening Pokédex</p>  
+      <p>Loading Pokédex</p>  
     </div>
   </div>
 </div>

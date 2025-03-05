@@ -86,6 +86,26 @@
           <span style="margin-left: 8px;">Add to Favorite</span>
         </ion-button>
       </ion-buttons>
+
+      <div class="btn-controls">
+        @if (id > 0) {
+          <ion-button
+            fill="clear"
+            (click)="onNavigate('prev')"
+          >
+            <ion-icon name="arrow-back-circle"></ion-icon>
+            <span>Previous</span>
+          </ion-button>
+        }
+  
+        <ion-button
+          fill="clear"
+          (click)="onNavigate('next')"
+        >
+          <span>Next</span>
+          <ion-icon name="arrow-forward-circle"></ion-icon>
+        </ion-button>
+      </div>
     </div>
   }
 </ion-content>
