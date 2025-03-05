@@ -1,13 +1,8 @@
-import { TResults } from '@/app/core/interfaces/common-response.interface';
-import { PokemonService } from '@/app/core/services/pokemon.service';
-import { environment } from '@/environments/environment';
+// Core
 import { Component } from '@angular/core';
+import { map } from 'rxjs';
 import { 
   InfiniteScrollCustomEvent,
-  IonHeader, 
-  IonToolbar, 
-  IonTitle, 
-  IonContent,
   IonList,
   IonItem,
   IonSelect,
@@ -16,17 +11,19 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent
 } from '@ionic/angular/standalone';
-import { map } from 'rxjs';
+import { environment } from '@/environments/environment';
+// Core Configuration
+import { TResults } from '@/app/core/interfaces/common-response.interface';
+import { PokemonService } from '@/app/core/services/pokemon.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [
-    IonHeader,
-    IonToolbar, 
-    IonTitle, 
-    IonContent,
+    RouterLink,
+    
     IonList,
     IonItem,
     IonSelect,

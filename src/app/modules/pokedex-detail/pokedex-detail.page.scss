@@ -1,0 +1,260 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px 0px;
+}
+
+.chip {
+  position: relative;
+  overflow: hidden;
+
+  span {
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+  }
+}
+
+.pokemon {
+  padding-bottom: 32px;
+  padding-left: 22px;
+  padding-right: 22px;
+  min-height: 100svh;
+  width: 100svw;
+  background-color: var(--color-element-normal);
+  color: var(--color-black);
+  
+
+  // Pokemon theme based on the main type
+  &[data-type="water"] {
+    background-color: var(--color-element-water);
+    color: var(--color-white);
+    
+    .chip.chip--type {
+      background-color: var(--color-element-water);
+    }
+  }
+
+  &[data-type="fire"] {
+    background-color: var(--color-element-fire);
+    color: var(--color-white);
+    
+    .chip.chip--type {
+      background-color: var(--color-element-fire);
+    }
+  }
+
+  &[data-type="grass"] {
+    background-color: var(--color-element-grass);
+    color: var(--color-white);
+    
+    .chip.chip--type {
+      background-color: var(--color-element-grass);
+    }
+  }
+
+  &[data-type="poison"] {
+    background-color: var(--color-element-poison);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-poison);
+    }
+  }
+
+  &[data-type="flying"] {
+    background-color: var(--color-element-flying);
+    color: var(--color-black);
+
+    .chip.chip--type {
+      background-color: var(--color-element-flying);
+    }
+  }
+
+  &[data-type="dragon"] {
+    background-color: var(--color-element-dragon);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-dragon);
+    }
+  }
+
+  &[data-type="electric"] {
+    background-color: var(--color-element-electric);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-electric);
+    }
+  }
+
+  &[data-type="ground"] {
+    background-color: var(--color-element-ground);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-ground);
+    }
+  }
+
+  &[data-type="bug"] {
+    background-color: var(--color-element-bug);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-bug);
+    }
+  }
+
+  &[data-type="psychic"] {
+    background-color: var(--color-element-psychic);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-psychic);
+    }
+  }
+
+  &[data-type="fighting"] {
+    background-color: var(--color-element-fighting);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-fighting);
+    }
+  }
+
+  &[data-type="ice"] {
+    background-color: var(--color-element-ice);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-ice);
+    }
+  }
+
+  &[data-type="rock"] {
+    background-color: var(--color-element-rock);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-rock);
+    }
+  }
+
+  &[data-type="ghost"] {
+    background-color: var(--color-element-ghost);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-ghost);
+    }
+  }
+
+  &[data-type="dark"] {
+    background-color: var(--color-element-dark);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-dark);
+    }
+  }
+
+  &[data-type="steel"] {
+    background-color: var(--color-element-steel);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-steel);
+    }
+  }
+
+  &[data-type="fairy"] {
+    background-color: var(--color-element-fairy);
+    color: var(--color-white);
+
+    .chip.chip--type {
+      background-color: var(--color-element-fairy);
+    }
+  }
+  
+  &__title-group {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__name {
+    text-transform: capitalize;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: var(--text-shadow-sm);
+  }
+
+  &__id {
+    font-size: 24px;
+    text-shadow: var(--text-shadow-sm);
+  }
+
+  &__types {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  &__img-frame {
+    width: 100%;
+    height: 347px;
+    overflow: hidden;
+    
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &__volume-section {
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    text-shadow: var(--text-shadow-sm);
+  }
+}
+
+.chatbox {
+  
+  
+  h3 {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .stats {
+    display: grid;
+    row-gap: 4px;
+    column-gap: 8px;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+}
+
+
+ion-button {
+  --color: var(--color-white);
+}
+

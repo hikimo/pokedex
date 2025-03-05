@@ -28,6 +28,15 @@ export type TPokemonSprites = {
   }
 };
 
+export type TPokemonAbilities = {
+  ability: {
+    name: string;
+    url: string;
+  };
+  is_hidden: boolean;
+  slot: number;
+};
+
 export interface IPokemonDetailResponse {
   id: number;
   name: string;
@@ -37,4 +46,5 @@ export interface IPokemonDetailResponse {
   stats: TPokemonStat[];
   cries: TPokemonCries;
   sprites: TPokemonSprites;
+  abilities: TPokemonAbilities[];
 }

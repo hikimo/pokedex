@@ -1,53 +1,41 @@
-<ion-header 
-  [translucent]="true"
->
-  <ion-toolbar>
-    <ion-title>
-      Pokédex Menu
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content 
-  [fullscreen]="true"
->
-  <p class="ion-label ion-padding">Filter POKéMON by type</p>
-  <ion-list>
-    <ion-item>
-      <ion-select
-        aria-label="pokemon-types"
-        interface="action-sheet"
-        placeholder="POKéMON type"
-        (ionChange)="onHandleTypeFilter($event)"
-      >
-        @for (item of pokemonTypeList; track item.name) {
-          <ion-select-option 
-            [value]="item.name"
-          >
-            {{ item.name }}
-          </ion-select-option>
-        }
-      </ion-select>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    @for (item of pokemonList; track item.name; let idx = $index) {
-      <ion-item>
-        <ion-label class="">{{ item.name }}</ion-label>
-      </ion-item>
-    }
-  </ion-list>
-  
-  @if (completed) {
-    <div class="ion-padding text-center">
-      <p>-- End of the line --</p>
-    </div>
-  } @else {
-    <ion-infinite-scroll 
-      (ionInfinite)="onIonInfinite($event)"
+<p class="ion-label ion-padding">Filter POKéMON by type</p>
+<ion-list>
+  <ion-item>
+    <ion-select
+      aria-label="pokemon-types"
+      interface="action-sheet"
+      placeholder="POKéMON type"
+      (ionChange)="onHandleTypeFilter($event)"
     >
-      <ion-infinite-scroll-content type="bubles"></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+      @for (item of pokemonTypeList; track item.name) {
+        <ion-select-option 
+          [value]="item.name"
+        >
+          {{ item.name }}
+        </ion-select-option>
+      }
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+<ion-list>
+  @for (item of pokemonList; track item.name; let idx = $index) {
+    <ion-item>
+      <ion-label [routerLink]="['/pokedex/' + item.name]">
+        {{ item.name }}
+      </ion-label>
+    </ion-item>
   }
-</ion-content>
+</ion-list>
+
+@if (completed) {
+  <div class="ion-padding text-center">
+    <p>-- End of the line --</p>
+  </div>
+} @else {
+  <ion-infinite-scroll 
+    (ionInfinite)="onIonInfinite($event)"
+  >
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+}

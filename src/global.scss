@@ -25,6 +25,8 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
@@ -38,30 +40,39 @@
 
 :root {
   --color-primary: #BAAA84;
+  --color-background: #D9D1BA;
   --color-white: #F0F0F0;
+  --color-black: #050505;
 
-  --color-element-normal: #DCDCDC;
-  --color-element-fire: #FF3700;
-  --color-element-water: #14B9FF;
-  --color-element-grass: #92BF19;
-  --color-element-poison: #BE78BE;
-  --color-element-flying: #79BCD7;
-  --color-element-dragon: #3C64C8;
-  --color-element-electric: #FFE100;
-  --color-element-ground: #FAC85A;
-  --color-element-bug: #46C846;
-  --color-element-psychic: #F08CDC
-  --color-element-fighting: #DC6900;
-  --color-element-ice: #14F5FF;
-  --color-element-rock: #B48C64;
-  --color-element-ghost: #A08CFF;
-  --color-element-dark: #787878;
-  --color-element-steel: #AAC8F0;
-  --color-element-fairy: #FFAFDC;
+  --color-element-normal: #999999;
+  --color-element-fire: #EE6B3A;
+  --color-element-water: #578BC9;
+  --color-element-grass: #6CB643;
+  --color-element-poison: #7A57A1;
+  --color-element-flying: #A4C7EC;
+  --color-element-dragon: #5360A9;
+  --color-element-electric: #F8DC4A;
+  --color-element-ground: #A37C40;
+  --color-element-bug: #A2A53D;
+  --color-element-psychic: #E9797B;
+  --color-element-fighting: #F1A73C;
+  --color-element-ice: #70B9E8;
+  --color-element-rock: #BABA92;
+  --color-element-ghost: #5360A9;
+  --color-element-dark: #4D4843;
+  --color-element-steel: #79AFD1;
+  --color-element-fairy: #DFB8D6;
+
+  --text-shadow-sm: 0px 2px 4px rgba(0,0,0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   background-color: var(--color-white);
+  font-family: "Poppins", sans-serif;;
 }
 
 // Normalize
@@ -70,13 +81,44 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 // Reusable classes
+.chatbox__group {
+  margin-bottom: 12px;
+  
+  .chatbox {
+    position: relative;
+  }
+
+  .chatbox:nth-child(1) {
+    z-index: 1;
+  }
+
+  .chatbox:nth-child(2) {
+    margin-top: -16px;
+    padding-top: 22px;
+  }
+}
+
 .chatbox {
   width: 100%;
   padding: 12px 14px;
   min-height: 100px;
   background-color: var(--color-white);
+  color: var(--color-black);
   border: 4px solid #A2C3D5;
   border-radius: 26px;
+
+  &.chatbox--primary {
+    border-color: var(--color-primary);
+
+  }
+  
+  &.chatbox--fill {
+    background-color: var(--color-background);
+  }
+}
+
+.flex-1 {
+  flex: 1;
 }
 
 .font-bold {
@@ -90,6 +132,9 @@ h1, h2, h3, h4, h5, h6, p {
 .chip {
   display: inline-block;
   background-color: var(--color-element-normal);
+  padding: 4px 18px;
+  font-size: 14px;
+  border-radius: 50px;
   
   &.chip--sm {
     padding: 4px 8px;
@@ -119,7 +164,7 @@ h1, h2, h3, h4, h5, h6, p {
 
   &[data-type="flying"] {
     background-color: var(--color-element-flying);
-    color: var(--color-white);
+    color: var(--color-black);
   }
 
   &[data-type="dragon"] {

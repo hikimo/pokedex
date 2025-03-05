@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
+import { MainLayoutComponent } from '@/app/shared/layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./modules/home/home.page').then((m) => m.HomePage),
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'loader'
   },
   {
     path: 'loader',
@@ -11,7 +13,16 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'loader',
-    pathMatch: 'full',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'home',
+        loadComponent: () => import('./modules/home/home.page').then((m) => m.HomePage),
+      },
+    ]
   },
+  {
+    path: 'pokedex/:name',
+    loadComponent: () => import('./modules/pokedex-detail/pokedex-detail.page').then((m) => m.PokedexDetailPage)
+  }
 ];
