@@ -1,7 +1,10 @@
-import { LoadingService } from '@/app/core/services/loading.service';
-import { AsyncPipe } from '@angular/common';
+// Angular core
 import { Component, OnInit } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+// RxJS
 import { Observable } from 'rxjs';
+// Services
+import { LoadingService } from '@/app/core/services/loading.service';
 
 @Component({
   selector: 'app-loader',

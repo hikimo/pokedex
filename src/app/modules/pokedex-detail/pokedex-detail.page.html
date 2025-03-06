@@ -1,115 +1,15 @@
-<ion-content>
+<app-menu-drawer
+  contentId="main-content"
+/>
+
+<ion-content class="ion-page" id="main-content">
   @if (pokemon) {
-    <div 
-      class="pokemon"
-      [attr.data-type]="pokemon.types[0].type.name"
-    >
-      <div class="toolbar">
-        <ion-button fill="clear" shape="round">
-          <ion-icon 
-            slot="icon-only" 
-            name="menu-outline"
-            size="large"
-          ></ion-icon>
-        </ion-button>
-      </div>
-  
-      <div class="pokemon__top-section">
-        <div class="pokemon__title-group">
-          <h1 class="pokemon__name">{{ pokemon.name }}</h1>
-          <p class="pokemon__id">#{{ padNumber(pokemon.id) }}</p>
-        </div>
-
-        <div class="pokemon__types">
-          @for (item of pokemon.types; track item.type.name) {
-            <div class="chip chip--type">
-              <span>
-                {{ item.type.name }}
-              </span>
-            </div>
-          }
-        </div>
-      </div>
-      
-      <!-- Poke Image Frame -->
-      <div class="pokemon__img-frame">
-        <img
-          [src]="pokemon.sprites.other['official-artwork'].front_default"
-          draggable="false"
-        />
-      </div>
-
-      <div class="pokemon__volume-section">
-        <p><strong>Height:</strong> {{ pokemon.height }} m</p>
-        <p><strong>Weight:</strong> {{ pokemon.weight }} lbs</p>
-      </div>
-
-      <div class="chatbox__group">
-        <div class="chatbox chatbox--primary">
-          <h3>Base Stats:</h3>
-
-          <div class="stats">
-            @for(item of pokemon.stats; track item.stat.name ) {
-              <p>{{ replaceStateName(item.stat.name) }}: {{ item.base_stat }}</p>
-            }
-          </div>
-        </div>
-
-        <div class="chatbox chatbox--primary chatbox--fill">
-          <h3>Abilities:</h3>
-
-          <div>
-            @for (item of pokemon.abilities; track item.ability.name) {
-              <p>{{ item.ability.name }}</p>
-            }
-          </div>
-        </div>
-      </div>
-
-      <ion-buttons>
-        <ion-button 
-          fill="clear" 
-          expand="block"
-          class="flex-1"
-          (click)="playSound()"
-        >
-          <ion-icon name="volume-high-outline"></ion-icon>
-          <span style="margin-left: 8px;">Listen Cries</span>
-        </ion-button>
-
-        <ion-button 
-          fill="clear" 
-          expand="block"
-          class="flex-1"
-          (click)="onToggleFavorite()"
-        >
-          <ion-icon name="{{isFavorite ? 'heart' : 'heart-outline'}}"></ion-icon>
-          <span style="margin-left: 8px;">{{ isFavorite ? 'Unfavorite' : 'Add to Favorite' }}</span>
-        </ion-button>
-      </ion-buttons>
-
-      <div class="btn-controls">
-        @if (id > 1) {
-          <ion-button
-            fill="clear"
-            (click)="onNavigate('prev')"
-          >
-            <ion-icon name="arrow-back-circle"></ion-icon>
-            <span>Previous</span>
-          </ion-button>
-        } @else {<div></div>}
-
-
-        @if (id < 1304) {
-          <ion-button
-            fill="clear"
-            (click)="onNavigate('next')"
-          >
-            <span>Next</span>
-            <ion-icon name="arrow-forward-circle"></ion-icon>
-          </ion-button>
-        } @else {<div></div>}
-      </div>
-    </div>
+    <app-pokecard 
+      [pokemon]="pokemon"
+      [isFavorite]="isFavorite"
+      (onNavigate)="onNavigate($event)"
+      (onPlaySound)="playSound()"
+      (onToggleFavorite)="onToggleFavorite()"
+    />
   }
 </ion-content>

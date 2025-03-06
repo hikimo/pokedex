@@ -18,8 +18,6 @@ export class FavoriteService {
       this.favorites.push(name);
       sessionStorage.setItem("favorites", JSON.stringify(this.favorites));
     }
-
-    console.log(this.favorites);
   }
 
   removeFromFavorite(name: string) {

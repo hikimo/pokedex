@@ -1,6 +1,10 @@
 <p class="ion-label ion-padding">List of my favorite POKeMONS</p>
 
 <ion-list>
+  @if (pokemonList.length < 1) {
+    <p class="text-center">Favorite list is empty</p>
+  }
+  
   @for (item of pokemonList; track item) {
     <ion-item>
       <ion-label [routerLink]="['/pokedex/' + item]">

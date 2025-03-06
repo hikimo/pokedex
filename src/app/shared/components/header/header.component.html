@@ -2,15 +2,21 @@
   [translucent]="true"
 >
   <ion-toolbar>
-    <ion-buttons slot="secondary">
-      <ion-button routerLink="/favorites">
-        Favorites
-      </ion-button>
+    @if (!hideMenu) {
+      <ion-buttons slot="secondary">
+        <ion-button routerLink="/favorites">
+          Favorites
+        </ion-button>
+  
+        <ion-button routerLink="/">
+          POKéList
+        </ion-button>
+      </ion-buttons>
+    }
 
-      <ion-button routerLink="/">
-        Pokelist
-      </ion-button>
-    </ion-buttons>
+    @if (enablePassingContent) {
+      <ng-content></ng-content>
+    }
     
     <ion-title>
       Pokédex Menu

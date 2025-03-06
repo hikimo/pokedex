@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+// Angular & Ionic core
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   IonHeader,
@@ -23,6 +24,9 @@ import {
   ]
 })
 export class HeaderComponent {
+
+  @Input('hide-menu') hideMenu: boolean = false;
+  @Input('enable-passing-content') enablePassingContent: boolean = false; 
 
   constructor() { }
 

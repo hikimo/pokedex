@@ -1,6 +1,6 @@
-// Core
+// Angular & Ionic core
 import { Component } from '@angular/core';
-import { map } from 'rxjs';
+import { RouterLink } from '@angular/router';
 import { 
   InfiniteScrollCustomEvent,
   IonList,
@@ -11,11 +11,14 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent
 } from '@ionic/angular/standalone';
-import { environment } from '@/environments/environment';
-// Core Configuration
-import { TResults } from '@/app/core/interfaces/common-response.interface';
+// RxJS
+import { map } from 'rxjs';
+// Services
 import { PokemonService } from '@/app/core/services/pokemon.service';
-import { RouterLink } from '@angular/router';
+// Interfaces
+import { TResults } from '@/app/core/interfaces/common-response.interface';
+// Env
+import { environment } from '@/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -38,6 +41,7 @@ export class HomePage {
   public pokemonTypeList: TResults[] = [];
   
   // Flags
+  private listByType: boolean = false;
   public completed: boolean = false;
   public loading: boolean = false;
   public loadingType: boolean = false;
@@ -141,7 +145,7 @@ export class HomePage {
 
   // All event handlers
   onIonInfinite(event: InfiniteScrollCustomEvent) {
-    if (!this.loading) {
+    if (!this.loading && !this.listByType) {
       this.loadList(event);
     } else {
       event.target.complete();
@@ -150,6 +154,8 @@ export class HomePage {
 
   onHandleTypeFilter(event: CustomEvent) {
     const name = event.detail.value;
+    this.listByType = name !== "";
+    
     if (name) {
       this.loadPokemonByTypes(name);
     }

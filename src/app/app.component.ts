@@ -1,11 +1,14 @@
+// Angular & Ionics
 import { Component } from '@angular/core';
 import { 
   IonApp, 
   IonRouterOutlet 
 } from '@ionic/angular/standalone';
-import { LoaderComponent } from './shared/components/loader/loader.component';
-import { LoadingService } from './core/services/loading.service';
-import { FavoriteService } from './core/services/favorite.service';
+// Services
+import { FavoriteService } from '@/app/core/services/favorite.service';
+import { LoadingService } from '@/app/core/services/loading.service';
+// Local components
+import { LoaderComponent } from '@/app/shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-root',

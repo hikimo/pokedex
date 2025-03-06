@@ -1,14 +1,7 @@
-import { IPokemonDetailResponse } from '@/app/core/interfaces/pokemon-detail-response.interface';
-import { FavoriteService } from '@/app/core/services/favorite.service';
-import { LoadingService } from '@/app/core/services/loading.service';
-import { PokemonService } from '@/app/core/services/pokemon.service';
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+// Angular & Ionic core
+import { ActivatedRoute, Router } from '@angular/router';
 import { 
-  IonContent,
-  IonButtons,
-  IonButton,
-  IonIcon
+  IonContent
 } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import { 
@@ -19,6 +12,18 @@ import {
   arrowBackCircle,
   arrowForwardCircle
 } from 'ionicons/icons';
+// Services
+import { FavoriteService } from '@/app/core/services/favorite.service';
+import { LoadingService } from '@/app/core/services/loading.service';
+import { PokemonService } from '@/app/core/services/pokemon.service';
+import { ChangeDetectorRef, Component } from '@angular/core';
+// Interfaces
+import { IPokemonDetailResponse } from '@/app/core/interfaces/pokemon-detail-response.interface';
+// Local components
+import { MenuDrawerComponent } from "@/app/shared/components/menu-drawer/menu-drawer.component";
+import { PokecardComponent } from '@/app/shared/components/pokecard/pokecard.component';
+// Env
+import { environment } from '@/environments/environment';
 
 @Component({
   selector: 'app-pokedex-detail',
@@ -26,11 +31,10 @@ import {
   styleUrls: ['./pokedex-detail.page.scss'],
   standalone: true,
   imports: [
-    IonButtons, 
-    IonContent,
-    IonButtons,
-    IonButton,
-    IonIcon
+    PokecardComponent,
+    MenuDrawerComponent,
+    
+    IonContent
   ]
 })
 export class PokedexDetailPage {
@@ -42,6 +46,7 @@ export class PokedexDetailPage {
   public isFavorite: boolean = false;
 
   constructor(
+    private router: Router,
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     private pokemonService: PokemonService,
@@ -73,6 +78,16 @@ export class PokedexDetailPage {
           this.checkFavorite();
           this.setSound(useId);
 
+        },
+        (err) => {
+          alert("Pokemon with this name / id is not found from the library!");
+          this.router.navigate(["/"]);
+
+          if (!environment.production) {
+            console.log("ERROR - POKEDEX DETAIL - LOAD DATA:", err);
+          }
+        }, 
+        () => {
           this.loadingService.stopLoading();
           this.cdr.detectChanges();
         }
@@ -115,16 +130,6 @@ export class PokedexDetailPage {
     }
     this.checkFavorite();
   }
+
   
-  // Utils
-  padNumber(id: number, totalLength: number = 4): string {
-    return id.toString().padStart(totalLength, '0');
-  }
-
-  replaceStateName(name: string): string {
-    // Skip process if not SP
-    if (!name.includes("-")) return name;
-
-    return name.replace("special-", "sp.");
-  }
 }

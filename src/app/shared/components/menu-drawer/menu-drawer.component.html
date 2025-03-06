@@ -1,0 +1,29 @@
+<ion-menu [contentId]="contentId">
+  <app-header
+    [hide-menu]="true"
+  >
+    <ion-buttons slot="secondary">
+      <ion-menu-toggle>
+        <ion-button shape="round">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+  </app-header>
+
+  <ion-content>
+    <div class="menu-content">
+      <ion-menu-toggle>
+        <button routerLink="/">
+          POKéList
+        </button>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle>
+        <button routerLink="/favorites">
+          Favorites
+        </button>
+      </ion-menu-toggle>
+    </div>
+  </ion-content>
+</ion-menu>

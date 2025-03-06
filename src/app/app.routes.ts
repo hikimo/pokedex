@@ -20,4 +20,10 @@ export const routes: Routes = [
     path: 'pokedex/:name',
     loadComponent: () => import('./modules/pokedex-detail/pokedex-detail.page').then((m) => m.PokedexDetailPage)
   },
+
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: ''
+  },
 ];

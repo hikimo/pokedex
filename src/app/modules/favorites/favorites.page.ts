@@ -1,10 +1,12 @@
+// Angular & Ionic core
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { 
   IonList,
   IonItem,
   IonLabel
 } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
+// Services
 import { FavoriteService } from '@/app/core/services/favorite.service';
 
 @Component({
