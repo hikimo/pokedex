@@ -1,0 +1,26 @@
+@mixin pokemon-type($type) {
+  background-color: var(--color-element-#{$type});
+  
+  .chip.chip--type {
+    background-color: var(--color-element-#{$type});
+  }
+
+  @if $type == "flying" {
+    color: var(--color-black);
+  }
+
+  @if $type == "electric" {
+    color: var(--color-black);
+    ion-button {
+      --color: var(--color-black);
+    }
+  }
+}
+
+.pokemon {
+  @each $type in water, fire, grass, poison, flying, dragon, electric, ground, bug, psychic, fighting, ice, rock, ghost, dark, steel, fairy {
+    &[data-type="#{$type}"] {
+      @include pokemon-type($type);
+    }
+  }
+}

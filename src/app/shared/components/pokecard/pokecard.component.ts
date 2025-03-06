@@ -18,7 +18,10 @@ import { IPokemonDetailResponse } from '@/app/core/interfaces/pokemon-detail-res
 @Component({
   selector: 'app-pokecard',
   templateUrl: './pokecard.component.html',
-  styleUrls: ['./pokecard.component.scss'],
+  styleUrls: [
+    './pokemon-type.scss',
+    './pokecard.component.scss'
+  ],
   imports: [
     IonMenuToggle,
     IonButtons,
